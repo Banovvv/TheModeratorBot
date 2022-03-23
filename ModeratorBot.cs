@@ -5,6 +5,7 @@ namespace TheModeratorBot
 {
     public class ModeratorBot
     {
+        private HashSet<string> _UsersGreeted = new HashSet<string>();
         public void Initialize(DiscordClient client)
         {
             client.MessageCreated += OnMessageCreated;
@@ -14,7 +15,14 @@ namespace TheModeratorBot
         {
             if (messageArgs.Message.Content.StartsWith("Hello"))
             {
-                await client.SendMessageAsync(messageArgs.Channel, $"Hello, {messageArgs.Author.Username}");
+                if (_UsersGreeted.Contains(messageArgs.Author.Username))
+                {
+                    await client.SendMessageAsync(messageArgs.Channel, $"I've already greeted you {messageArgs.Author.Username}, stop looking for attention");
+                }
+                else
+                {
+                    await client.SendMessageAsync(messageArgs.Channel, $"Hello, {messageArgs.Author.Username}"); 
+                }
             }
         }
     }
