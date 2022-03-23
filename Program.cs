@@ -1,20 +1,16 @@
 ﻿using DSharpPlus;
+using Microsoft.Extensions.Configuration;
+
+var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", true)
+                                              .Build();
 
 var source = new CancellationTokenSource();
 
 var discordClient = new DiscordClient(new DiscordConfiguration
 {
-    Token = "TOKEN",
+    Token = configuration["discordToken"],
     TokenType = TokenType.Bot
 });
-
-discordClient.MessageCreated += async (client, messageArgs) =>
-{
-    if (messageArgs.Message.Content.StartsWith("Hello"))
-    {
-        await discordClient.SendMessageAsync(messageArgs.Channel, $"Hello, {messageArgs.Author.Username}");
-    }
-};
 
 var token = source.Token;
 

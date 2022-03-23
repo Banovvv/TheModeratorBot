@@ -11,6 +11,13 @@
     <PackageReference Include="DSharpPlus" Version="4.1.0" />
     <PackageReference Include="Microsoft.Extensions.COnfiguration.Binder" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.COnfiguration.Json" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
