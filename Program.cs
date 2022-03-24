@@ -1,6 +1,8 @@
 ﻿using DSharpPlus;
+using DSharpPlus.CommandsNext;
 using Microsoft.Extensions.Configuration;
 using TheModeratorBot;
+using TheModeratorBot.Commands;
 
 var configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", true)
@@ -13,6 +15,13 @@ var discordClient = new DiscordClient(new DiscordConfiguration
     Token = configuration["discordToken"],
     TokenType = TokenType.Bot
 });
+
+var commandModule = discordClient.UseCommandsNext(new CommandsNextConfiguration()
+{
+    StringPrefixes = new string[] { "!" }
+});
+
+commandModule.RegisterCommands<CommandModule>();
 
 discordClient.AddModeratorBot();
 
