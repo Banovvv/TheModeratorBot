@@ -1,5 +1,6 @@
 ﻿using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
+using DSharpPlus.Entities;
 
 namespace TheModeratorBot.Commands
 {
@@ -20,15 +21,15 @@ namespace TheModeratorBot.Commands
             await context.RespondAsync(_Greetings.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
         }
         [Command("greet")]
-        public async Task GreetCommand(CommandContext context, [RemainingText] string name)
+        public async Task GreetCommand(CommandContext context, DiscordMember member)
         {
             List<string> _Greetings = new List<string>()
             {
-                $"Greetings, {name}!",
-                $"Hello, {name}!",
-                $"Hi there, {name}!",
-                $"Hey, {name}!",
-                $"How you doin', {name} ;)"
+                $"Greetings, {member.Mention}!",
+                $"Hello, {member.Mention}!",
+                $"Hi there, {member.Mention}!",
+                $"Hey, {member.Mention}!",
+                $"How you doin', {member.Mention} ;)"
             };
 
             await context.RespondAsync(_Greetings.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
