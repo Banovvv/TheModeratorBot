@@ -2,8 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using TheModeratorBot;
 
-var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", true)
-                                              .Build();
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json", true)
+    .Build();
 
 var source = new CancellationTokenSource();
 
