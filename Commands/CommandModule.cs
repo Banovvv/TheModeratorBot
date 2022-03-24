@@ -19,6 +19,20 @@ namespace TheModeratorBot.Commands
 
             await context.RespondAsync(_Greetings.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
         }
+        [Command("greet")]
+        public async Task GreetCommand(CommandContext context, [RemainingText] string name)
+        {
+            List<string> _Greetings = new List<string>()
+            {
+                $"Greetings, {name}!",
+                $"Hello, {name}!",
+                $"Hi there, {name}!",
+                $"Hey, {name}!",
+                $"How you doin', {name} ;)"
+            };
+
+            await context.RespondAsync(_Greetings.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
+        }
 
         [Command("joke")]
         public async Task JokeCommand(CommandContext context)
