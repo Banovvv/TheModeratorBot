@@ -21,6 +21,20 @@ namespace TheModeratorBot.Commands
             await context.RespondAsync(_Greetings.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
         }
         [Command("greet")]
+        public async Task GreetCommand(CommandContext context, string firstName, string lastName)
+        {
+            List<string> _Greetings = new List<string>()
+            {
+                $"Greetings, {firstName} {lastName}!",
+                $"Hello, {firstName} {lastName}!",
+                $"Hi there, {firstName} {lastName}!",
+                $"Hey, {firstName} {lastName}!",
+                $"How you doin', {firstName} {lastName} ;)"
+            };
+
+            await context.RespondAsync(_Greetings.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
+        }
+        [Command("greet")]
         public async Task GreetCommand(CommandContext context, DiscordMember member)
         {
             List<string> _Greetings = new List<string>()
@@ -32,7 +46,7 @@ namespace TheModeratorBot.Commands
                 $"How you doin', {member.Mention} ;)"
             };
 
-            await context.RespondAsync(_Greetings.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
+        await context.RespondAsync(_Greetings.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
         }
 
         [Command("joke")]
