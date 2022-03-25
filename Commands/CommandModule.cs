@@ -76,5 +76,21 @@ namespace TheModeratorBot.Commands
 
             await context.RespondAsync(_Jokes.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
         }
+
+        [Command("song")]
+        public async Task SongCommand(CommandContext context)
+        {
+            List<string> _Songs = new List<string>()
+            {
+                "https://youtu.be/LP7qvA7etBo",
+                "https://youtu.be/0izrbaV-lkY",
+                "https://youtu.be/kQcB8QpjfSo",
+                "https://youtu.be/PAjD4GFi3Ko",
+                "https://youtu.be/mwgZalAFNhM",
+                "https://youtu.be/3JgIGi-wL9E"
+            };
+
+            await context.RespondAsync(_Songs.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
+        }
     }
 }
