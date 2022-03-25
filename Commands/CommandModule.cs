@@ -48,7 +48,7 @@ namespace TheModeratorBot.Commands
                 $"How you doin', {member.Mention} ;)"
             };
 
-        await context.RespondAsync(_Greetings.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
+            await context.RespondAsync(_Greetings.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
         }
 
         [Command("joke")]
