@@ -6,6 +6,8 @@ namespace TheModeratorBot.Commands
 {
     public class CommandModule : BaseCommandModule
     {
+        private HashSet<string> _UsersGreeted = new HashSet<string>();
+
         [Command("greet")]
         public async Task GreetCommand(CommandContext context)
         {
