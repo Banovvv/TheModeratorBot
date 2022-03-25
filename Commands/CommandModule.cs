@@ -1,6 +1,7 @@
 ﻿using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
+using WeatherNet;
 
 namespace TheModeratorBot.Commands
 {
@@ -91,6 +92,23 @@ namespace TheModeratorBot.Commands
             };
 
             await context.RespondAsync(_Songs.OrderBy(x => Guid.NewGuid()).FirstOrDefault());
+        }
+
+        [Command("weather")]
+        public async Task WeatherCommand(CommandContext context)
+        {
+            var weather = Current.GetByCityName("Lovech", "Bulgaria", "en", "metric");
+            string city = weather.Item.City;
+            int degrees = (int)weather.Item.Temp;
+            await context.RespondAsync($"The temperature in {city} is {degrees} degrees");
+        }
+
+        [Command("weather")]
+        public async Task WeatherCommand(CommandContext context, string city, string country)
+        {
+            var weather = Current.GetByCityName(city, country, "en", "metric");
+            int degrees = (int)weather.Item.Temp;
+            await context.RespondAsync($"The temperature in {city} is {degrees} degrees");
         }
     }
 }
