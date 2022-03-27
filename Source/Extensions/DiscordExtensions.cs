@@ -1,6 +1,6 @@
 ﻿using DSharpPlus;
 
-namespace TheModeratorBot
+namespace TheModeratorBot.Extensions
 {
     public static class DiscordExtensions
     {

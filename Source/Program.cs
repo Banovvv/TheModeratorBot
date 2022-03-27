@@ -1,7 +1,7 @@
 ﻿using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using Microsoft.Extensions.Configuration;
-using TheModeratorBot;
+using TheModeratorBot.Extensions;
 using TheModeratorBot.Commands;
 
 var configuration = new ConfigurationBuilder()
