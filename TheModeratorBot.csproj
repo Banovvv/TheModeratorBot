@@ -13,7 +13,7 @@
     <PackageReference Include="Microsoft.Extensions.COnfiguration.Binder" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.COnfiguration.Json" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
-    <PackageReference Include="WeatherNet.Netstandard" Version="1.1.0" />
+    <PackageReference Include="SimpleWeather" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
