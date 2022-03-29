@@ -1,7 +1,7 @@
 ﻿using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
-using WeatherNet;
+using SimpleWeather;
 
 namespace TheModeratorBot.Commands
 {
@@ -95,20 +95,11 @@ namespace TheModeratorBot.Commands
         }
 
         [Command("weather")]
-        public async Task WeatherCommand(CommandContext context)
+        public async Task WeatherCommand(CommandContext context, string city, string units = "metric")
         {
-            var weather = Current.GetByCityName("Lovech", "Bulgaria", "en", "metric");
-            string city = weather.Item.City;
-            int degrees = (int)weather.Item.Temp;
-            await context.RespondAsync($"The temperature in {city} is {degrees} degrees");
-        }
-
-        [Command("weather")]
-        public async Task WeatherCommand(CommandContext context, string city, string country)
-        {
-            var weather = Current.GetByCityName(city, country, "en", "metric");
-            int degrees = (int)weather.Item.Temp;
-            await context.RespondAsync($"The temperature in {city} is {degrees} degrees");
+            WeatherController weatherController = new WeatherController();
+            CurrentWeather? currentWeather = await weatherController.GetCurrentWeatherResponse(city, units);
+            await context.RespondAsync($"The temperature in {currentWeather.City} is {currentWeather.Main.Temperature} degrees with {currentWeather.Weather.Description}");
         }
     }
 }
