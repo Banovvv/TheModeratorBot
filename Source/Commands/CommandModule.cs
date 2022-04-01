@@ -110,7 +110,7 @@ namespace TheModeratorBot.Commands
             WeatherForecast weatherForecast = await weatherController.GetWeatherForecast(city, units);
 
             StringBuilder forecast = new StringBuilder();
-            forecast.AppendLine($"The weather in {city} for the next 8 days (including today) is going to be:");
+            forecast.AppendLine($"The weather in {city} for the next 8 days (including today) is going to be:\n");
             foreach(var day in weatherForecast.Daily)
             {
                 forecast.AppendLine($"The weather for: {day.DT.ToString("dd.MM.yyyy")}");
