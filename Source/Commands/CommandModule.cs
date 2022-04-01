@@ -2,6 +2,7 @@
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using SimpleWeather;
+using System.Text;
 
 namespace TheModeratorBot.Commands
 {
@@ -98,8 +99,29 @@ namespace TheModeratorBot.Commands
         public async Task WeatherCommand(CommandContext context, string city, string units = "metric")
         {
             WeatherController weatherController = new WeatherController();
-            CurrentWeather? currentWeather = await weatherController.GetCurrentWeatherResponse(city, units);
-            await context.RespondAsync($"The temperature in {currentWeather.City} is {currentWeather.Main.Temperature} degrees with {currentWeather.Weather.Description}");
+            CurrentWeather? currentWeather = await weatherController.GetCurrentWeather(city, units);
+            await context.RespondAsync($"The weather in {currentWeather.City} is {currentWeather.Main.Temperature} degrees with {currentWeather.Weather.Description}");
+        }
+
+        [Command("forecast")]
+        public async Task ForecastCommand(CommandContext context, string city, string units = "metric")
+        {
+            WeatherController weatherController = new WeatherController();
+            WeatherForecast weatherForecast = await weatherController.GetWeatherForecast(city, units);
+
+            StringBuilder forecast = new StringBuilder();
+            forecast.AppendLine($"The weather in {city} for the next 8 days (including today) is going to be:");
+            foreach(var day in weatherForecast.Daily)
+            {
+                forecast.AppendLine($"The weather for: {day.DT.ToString("dd.MM.yyyy")}");
+                forecast.AppendLine($"Min temperature: {day.Temperature.Min}");
+                forecast.AppendLine($"Max temperature: {day.Temperature.Max}");
+                forecast.AppendLine($"The weather conditions will be: {day.Weather.Description}");
+                forecast.AppendLine($"Probability for precipitation: {day.PrecipitationProbability}%");
+                forecast.AppendLine();
+            }
+
+            await context.RespondAsync(forecast.ToString());
         }
     }
 }
