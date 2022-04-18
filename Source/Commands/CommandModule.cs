@@ -8,7 +8,7 @@ namespace TheModeratorBot.Commands
 {
     public class CommandModule : BaseCommandModule
     {
-        private HashSet<string> _UsersGreeted = new HashSet<string>();
+        private readonly HashSet<string> _UsersGreeted = new HashSet<string>();
 
         [Command("greet")]
         public async Task GreetCommand(CommandContext context)
@@ -114,8 +114,8 @@ namespace TheModeratorBot.Commands
             foreach(var day in weatherForecast.Daily)
             {
                 forecast.AppendLine($"The weather for: {day.DT.ToString("dd.MM.yyyy")}");
-                forecast.AppendLine($"Min temperature: {day.Temperature.Min}");
-                forecast.AppendLine($"Max temperature: {day.Temperature.Max}");
+                forecast.AppendLine($"Min temperature: {Math.Round(day.Temperature.Min)}°C");
+                forecast.AppendLine($"Max temperature: {Math.Round(day.Temperature.Min)}°C");
                 forecast.AppendLine($"The weather conditions will be: {day.Weather.Description}");
                 forecast.AppendLine($"Probability for precipitation: {day.PrecipitationProbability}%");
                 forecast.AppendLine();
